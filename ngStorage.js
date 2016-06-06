@@ -212,7 +212,13 @@
                     var doc = $document[0];
 
                     if ( (!doc.hasFocus || !doc.hasFocus()) && storageKeyPrefix === event.key.slice(0, prefixLength) ) {
-                        event.newValue ? $storage[event.key.slice(prefixLength)] = deserializer(event.newValue) : delete $storage[event.key.slice(prefixLength)];
+                        if (event.newValue) {
+                          $storage[event.key.slice(prefixLength)] = deserializer(event.newValue) 
+                        }
+                        else{
+                          delete $storage[event.key.slice(prefixLength)]; 
+                          $rootScope.$emit('ngStorage-deleted');
+                        }
 
                         _last$storage = angular.copy($storage);
 
