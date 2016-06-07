@@ -217,7 +217,7 @@
                         }
                         else{
                           delete $storage[event.key.slice(prefixLength)]; 
-                          $rootScope.$emit('ngStorage-deleted');
+                          $rootScope.$emit('ngStorage-deleted',{key:event.key.slice(prefixLength)});
                         }
 
                         _last$storage = angular.copy($storage);
